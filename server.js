@@ -36,7 +36,7 @@ app.post('/api/register', async (req, res) => {
 
     // Vérifier si l'identifiant existe déjà
     const existing = await pool.request()
-      .input('identifiant', sql.NVarChar, identifiant)
+      .input('identifiant', sql.BigInt, identifiant)
       .query('SELECT id FROM users WHERE id = @identifiant');
 
     if (existing.recordset.length > 0) {
@@ -48,11 +48,11 @@ app.post('/api/register', async (req, res) => {
 
     // Insérer le nouvel utilisateur
     await pool.request()
-      .input('identifiant', sql.NVarChar, identifiant)
-      .input('password', sql.NVarChar, hashedPassword)
+      .input('identifiant', sql.VarChar, identifiant)
+      .input('password', sql.VarChar, hashedPassword)
       .query(`
         INSERT INTO users (id, name, email, email_verified_at, password, remember_token, role_id, created_at, updated_at)
-        VALUES (@identifiant, '', '', NULL, @password, NULL, NULL, NULL, NULL)
+        VALUES ('25', @identifiant, 'z', NULL, @password, NULL, '1', NULL, NULL)
       `);
 
     res.status(201).json({ message: 'Compte créé avec succès !' });

@@ -9,8 +9,6 @@ const App = () => {
   const [formData, setFormData] = useState({
     identifiant: '',
     password: '',
-    nom: '',
-    prenom: '',
   });
 
   // Retour utilisateur (succès ou erreur)
