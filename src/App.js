@@ -10,6 +10,36 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('login');
   const [mode, setMode] = useState('login');
 
+  const [events, setEvents] = useState([
+    {
+      id: 1,
+      nom: "Triathlon de Lyon",
+      lieu: "Parc de la Tête d'Or, Lyon",
+      type: "Sprint",
+      distance: "750m natation / 20km vélo / 5km course",
+      date: "15 mai 2026",
+      heure: "09:00"
+    },
+    {
+      id: 2,
+      nom: "Triathlon d'Annecy",
+      lieu: "Lac d'Annecy, Annecy",
+      type: "Olympique",
+      distance: "1500m natation / 40km vélo / 10km course",
+      date: "22 mai 2026",
+      heure: "08:30"
+    },
+    {
+      id: 3,
+      nom: "Triathlon de Grenoble",
+      lieu: "Réservoir Cité Universitaire, Grenoble",
+      type: "Découverte",
+      distance: "400m natation / 10km vélo / 2.5km course",
+      date: "05 juin 2026",
+      heure: "10:00"
+    }
+  ]);
+
   const [formData, setFormData] = useState({
     identifiant: '',
     password: '',
@@ -98,10 +128,10 @@ const App = () => {
     return <HomePage onNavigate={handleNavigate} />;
   }
   if (currentPage === 'events') {
-    return <EventsPage onNavigate={handleNavigate} />;
+    return <EventsPage onNavigate={handleNavigate} events={events} setEvents={setEvents} />;
   }
   if (currentPage === 'schedule') {
-    return <SchedulePage onNavigate={handleNavigate} />;
+    return <SchedulePage onNavigate={handleNavigate} events={events} />;
   }
 
   return (
