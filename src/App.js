@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
+import HomePage from './components/HomePage';
+import EventsPage from './components/EventsPage';
+import SchedulePage from './components/SchedulePage';
 
 const API_URL = 'http://localhost:5001';
 
 const App = () => {
+  const [currentPage, setCurrentPage] = useState('login');
   const [mode, setMode] = useState('login');
 
   const [formData, setFormData] = useState({
@@ -44,7 +48,11 @@ const App = () => {
           setMessage({ type: 'error', text: data.error });
         } else {
           setMessage({ type: 'success', text: `Bienvenue ${data.user.identifiant} !` });
-          // TODO: rediriger vers le dashboard
+          // Redirection vers la page d'accueil après succès
+          setTimeout(() => {
+            setCurrentPage('home');
+            setFormData({ identifiant: '', password: '' });
+          }, 1500);
         }
 
       } else {
@@ -78,6 +86,23 @@ const App = () => {
       setLoading(false);
     }
   };
+
+  const handleNavigate = (page) => {
+    setCurrentPage(page);
+    setMessage(null);
+    setFormData({ identifiant: '', password: '' });
+  };
+
+  // Navigation conditionnelle selon la page
+  if (currentPage === 'home') {
+    return <HomePage onNavigate={handleNavigate} />;
+  }
+  if (currentPage === 'events') {
+    return <EventsPage onNavigate={handleNavigate} />;
+  }
+  if (currentPage === 'schedule') {
+    return <SchedulePage onNavigate={handleNavigate} />;
+  }
 
   return (
     <div className="mobile-container">
@@ -168,6 +193,13 @@ const App = () => {
               : mode === 'login' ? 'Se connecter' : "S'inscrire"}
           </button>
         </form>
+
+        <button 
+          className="demo-button"
+          onClick={() => handleNavigate('home')}
+        >
+          Accéder au site →
+        </button>
       </main>
 
       <footer className="app-footer">

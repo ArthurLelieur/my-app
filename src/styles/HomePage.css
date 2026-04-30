@@ -1,0 +1,99 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Roboto';
+}
+
+.home-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #121212;
+}
+
+.home-buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.home-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background: #1e1e1e;
+  color: white;
+  border: 2px solid #ff4500;
+}
+
+.events-btn {
+  background: linear-gradient(135deg, #ff4500 0%, #ff6d00 100%);
+  color: white;
+  border: none;
+}
+
+.events-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.4);
+}
+
+.schedule-btn {
+  background: linear-gradient(135deg, #ff4500 0%, #ff6d00 100%);
+  color: white;
+  border: none;
+}
+
+.schedule-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.4);
+}
+
+.btn-icon {
+  font-size: 2.5rem;
+}
+
+.btn-label {
+  font-size: 1.3rem;
+}
+
+.logout-btn {
+  padding: 0.8rem 2rem;
+  background: transparent;
+  color: #ff4500;
+  border: 2px solid #ff4500;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 69, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .home-buttons {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
